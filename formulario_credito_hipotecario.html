@@ -117,4 +117,45 @@
             <input type="number" name="monto" id="monto" required>
 
             <label for="plazo">Plazo estimado (en años o meses)</label>
+            <input type="text" name="plazo" id="plazo" required>
 
+            <label>
+                <input type="checkbox" name="autorizacion" id="autorizacion">
+                Autorizo ser contactado por un asesor para continuar con mi solicitud.
+            </label>
+
+            <button type="submit">Enviar solicitud</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+
+    <script>
+    document.getElementById("formulario-credito").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+
+        // Si el checkbox no está marcado, se agrega manualmente
+        if (!data.has("autorizacion")) {
+            data.append("autorizacion", "No");
+        }
+
+        fetch("https://script.google.com/macros/s/AKfycbze6kmHtIsWPwF81MptytaUYIADWdbw-4sgnPnhZXbjYu3nLwPZ-rUsWDILyyHUbogqrg/exec", {
+            method: "POST",
+            body: data
+        })
+        .then(response => response.text())
+        .then(result => {
+            document.getElementById("mensaje").textContent = "¡Solicitud enviada con éxito!";
+            document.getElementById("mensaje").style.color = "green";
+            form.reset();
+        })
+        .catch(error => {
+            document.getElementById("mensaje").textContent = "Error al enviar: " + error.message;
+            document.getElementById("mensaje").style.color = "red";
+            console.error("Error detallado:", error);
+        });
+    });
+    </script>
+</body>
+</html>
