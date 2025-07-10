@@ -61,6 +61,11 @@
         button:hover {
             background-color: #004080;
         }
+        #mensaje {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -70,61 +75,46 @@
         </div>
         <h1>Solicitud de Crédito Hipotecario</h1>
         <p>Completa este formulario si deseas financiar la compra, mejora o construcción de una vivienda.</p>
-        <form>
-    <label for='nombre'>Nombre completo</label>
-<input type='text' name='nombre' id='nombre'>
-<label for='documento'>Tipo y número de documento</label>
-<input type='text' name='documento' id='documento'>
-<label for='ciudad'>Ciudad de residencia</label>
-<input type='text' name='ciudad' id='ciudad'>
-<label for='telefono'>Teléfono de contacto</label>
-<input type='tel' name='telefono' id='telefono'>
-<label for='correo'>Correo electrónico</label>
-<input type='email' name='correo' id='correo'>
-<label for='ingresos'>Ingresos mensuales</label>
-<input type='number' name='ingresos' id='ingresos'>
-<label for='contrato'>Tipo de contrato laboral</label>
-<input type='text' name='contrato' id='contrato'>
-<label for='antiguedad'>Antigüedad laboral</label>
-<input type='text' name='antiguedad' id='antiguedad'>
-<label for='deudas'>¿Tienes otras deudas actualmente?</label>
-<input type='text' name='deudas' id='deudas'>
-<label for='tipo_credito'>¿Qué tipo de crédito necesitas?</label>
-<select name='tipo_credito' id='tipo_credito'>
-<option value='Compra de vivienda'>Compra de vivienda</option>
-<option value='Construcción'>Construcción</option>
-<option value='Remodelación'>Remodelación</option>
-</select>
-<label for='valor'>Valor aproximado del inmueble o proyecto</label>
-<input type='number' name='valor' id='valor'>
-<label for='monto'>Monto que deseas financiar</label>
-<input type='number' name='monto' id='monto'>
-<label for='plazo'>Plazo estimado (en años o meses)</label>
-<input type='text' name='plazo' id='plazo'>
-<label for='autorizacion'>Autorizo ser contactado por un asesor para continuar con mi solicitud.</label>
-<input type='checkbox' name='autorizacion' id='autorizacion'> Autorizo ser contactado por un asesor para continuar con mi solicitud.
-<button type='submit'>Enviar solicitud</button>
-</form></div></body>
-<div id="mensaje" style="margin-top: 20px; color: green; font-weight: bold;"></div>
-<script>
-document.querySelector("form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    fetch("https://script.google.com/macros/s/AKfycbze6kmHtIsWPwF81MptytaUYIADWdbw-4sgnPnhZXbjYu3nLwPZ-rUsWDILyyHUbogqrg/exec", {
-        method: "POST",
-        body: data
-    })
-    .then(response => response.text())
-    .then(result => {
-        alert("¡Solicitud enviada con éxito!");
-        form.reset();
-    })
-    .catch(error => {
-        alert("Hubo un error al enviar la solicitud.");
-        console.error(error);
-    });
-});
-</script>
+        <form id="formulario-credito">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" name="nombre" id="nombre" required>
 
-</html>
+            <label for="documento">Tipo y número de documento</label>
+            <input type="text" name="documento" id="documento" required>
+
+            <label for="ciudad">Ciudad de residencia</label>
+            <input type="text" name="ciudad" id="ciudad" required>
+
+            <label for="telefono">Teléfono de contacto</label>
+            <input type="tel" name="telefono" id="telefono" required>
+
+            <label for="correo">Correo electrónico</label>
+            <input type="email" name="correo" id="correo" required>
+
+            <label for="ingresos">Ingresos mensuales</label>
+            <input type="number" name="ingresos" id="ingresos" required>
+
+            <label for="contrato">Tipo de contrato laboral</label>
+            <input type="text" name="contrato" id="contrato" required>
+
+            <label for="antiguedad">Antigüedad laboral</label>
+            <input type="text" name="antiguedad" id="antiguedad" required>
+
+            <label for="deudas">¿Tienes otras deudas actualmente?</label>
+            <input type="text" name="deudas" id="deudas" required>
+
+            <label for="tipo_credito">¿Qué tipo de crédito necesitas?</label>
+            <select name="tipo_credito" id="tipo_credito" required>
+                <option value="Compra de vivienda">Compra de vivienda</option>
+                <option value="Construcción">Construcción</option>
+                <option value="Remodelación">Remodelación</option>
+            </select>
+
+            <label for="valor">Valor aproximado del inmueble o proyecto</label>
+            <input type="number" name="valor" id="valor" required>
+
+            <label for="monto">Monto que deseas financiar</label>
+            <input type="number" name="monto" id="monto" required>
+
+            <label for="plazo">Plazo estimado (en años o meses)</label>
+
