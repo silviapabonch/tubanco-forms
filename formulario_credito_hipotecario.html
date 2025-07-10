@@ -104,4 +104,26 @@
 <label for='autorizacion'>Autorizo ser contactado por un asesor para continuar con mi solicitud.</label>
 <input type='checkbox' name='autorizacion' id='autorizacion'> Autorizo ser contactado por un asesor para continuar con mi solicitud.
 <button type='submit'>Enviar solicitud</button>
-</form></div></body></html>
+</form></div></body>
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    fetch("https://script.google.com/macros/s/AKfycbze6kmHtIsWPwF81MptytaUYIADWdbw-4sgnPnhZXbjYu3nLwPZ-rUsWDILyyHUbogqrg/exec", {
+        method: "POST",
+        body: data
+    })
+    .then(response => response.text())
+    .then(result => {
+        alert("¡Solicitud enviada con éxito!");
+        form.reset();
+    })
+    .catch(error => {
+        alert("Hubo un error al enviar la solicitud.");
+        console.error(error);
+    });
+});
+</script>
+
+</html>
